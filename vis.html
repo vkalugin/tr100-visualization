@@ -126,7 +126,7 @@
             <header class="dashboard-header">График температуры</header>
 
             <div class="dashboard-group">
-              <canvas id="graph-temperatures"
+              <canvas id="tr100-graph-temperatures"
                 >Your browser does not support the canvas element.</canvas
               >
             </div>
@@ -183,4 +183,39 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const TR100_GRAPH_CAPACITY = 100;
+
+    var tr100Graph = new Chart(
+      document.querySelector("#tr100-graph-temperatures "),
+      {
+        type: "scatter",
+        options: {
+          animation: false,
+          showLine: true,
+          scales: {
+            x: {
+              min: -10,
+              max: 0,
+              ticks: {
+                callback: function (value, index, ticks) {
+                  return value + " min";
+                },
+              },
+            },
+          },
+        },
+        data: {
+          labels: [],
+          datasets: [
+            {
+              type: "scatter",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({ x: undefined, y: undefined }),
+            },
+          ],
+        },
+      }
+    );
+  </script>
 </div>
