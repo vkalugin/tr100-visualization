@@ -58,24 +58,30 @@
           <div class="dashboard-group">
             <table class="dashboard-table">
               <tr>
-                <th><img src="https://cdn1.iconfinder.com/data/icons/carbon-design-system-vol-5/32/meter-512.png" height="64" style="margin: 20px; filter: invert(1);"</th>
+                <th>
+                  <img
+                    src="https://cdn1.iconfinder.com/data/icons/carbon-design-system-vol-5/32/meter-512.png"
+                    height="64"
+                    style="margin: 20px; filter: invert(1)"
+                  />
+                </th>
                 <th>Температура включения</th>
                 <th>Дифференциал отключения</th>
               </tr>
               <tr>
                 <td>Расцепление:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Тревога:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Вентиляция:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
             </table>
           </div>
@@ -92,29 +98,35 @@
           <div class="dashboard-group">
             <table class="dashboard-table">
               <tr>
-                <th><img src="https://cdn1.iconfinder.com/data/icons/carbon-design-system-vol-5/32/meter-512.png" height="64" style="margin: 20px; filter: invert(1);"></th>
+                <th>
+                  <img
+                    src="https://cdn1.iconfinder.com/data/icons/carbon-design-system-vol-5/32/meter-512.png"
+                    height="64"
+                    style="margin: 20px; filter: invert(1)"
+                  />
+                </th>
                 <th>Текущая</th>
                 <th>Максимальная</th>
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><input type="number" class="tr100-input"/></td>
-                <td><input type="number" class="tr100-input"/></td>
+                <td><input type="number" class="tr100-input" /></td>
+                <td><input type="number" class="tr100-input" /></td>
               </tr>
             </table>
           </div>
@@ -126,63 +138,72 @@
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm">
-            <header class="dashboard-header">График температуры</header>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <header class="dashboard-header">График температуры</header>
 
-            <div class="dashboard-group">
-              <canvas id="tr100-graph-temperatures"
-                >Your browser does not support the canvas element.</canvas
-              >
-            </div>
+          <div class="dashboard-group">
+            <canvas id="tr100-graph-temperatures"
+              >Your browser does not support the canvas element.</canvas
+            >
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <header class="dashboard-header">Состояние аварий</header>
+
+          <div class="dashboard-group">
+            <table class="dashboard-table">
+              <tr>
+                <th>
+                  <img
+                    src="https://cdn1.iconfinder.com/data/icons/bootstrap-fill-vol-2/16/info-circle-fill-512.png"
+                    height="64"
+                    style="margin: 20px; filter: invert(1)"
+                  />
+                </th>
+                <th><div class="vertical-text">РАСЦЕПЛ.</div></th>
+                <th><div class="vertical-text">ТРЕВОГА</div></th>
+                <th><div class="vertical-text">ВЕНТИЛЯЦ.</div></th>
+                <th><div class="vertical-text">ОТКАЗ</div></th>
+              </tr>
+              <tr>
+                <td>Датчик 1:</td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+              </tr>
+              <tr>
+                <td>Датчик 2:</td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+              </tr>
+              <tr>
+                <td>Датчик 3:</td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+              </tr>
+              <tr>
+                <td>Датчик 4:</td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+                <td><span class="status-indicator bg-success"></span></td>
+              </tr>
+            </table>
           </div>
 
-          <div class="col-sm">
-            <header class="dashboard-header">Состояние аварий</header>
-
-            <div class="dashboard-group">
-              <table class="dashboard-table">
-                <tr>
-                  <th><img src="https://cdn1.iconfinder.com/data/icons/bootstrap-fill-vol-2/16/info-circle-fill-512.png" height="64" style="margin: 20px; filter: invert(1);"></th>
-                  <th><div class="vertical-text">РАСЦЕПЛ.</div></th>
-                  <th><div class="vertical-text">ТРЕВОГА</div></th>
-                  <th><div class="vertical-text">ВЕНТИЛЯЦ.</div></th>
-                  <th><div class="vertical-text">ОТКАЗ</div></th>
-                </tr>
-                <tr>
-                  <td>Датчик 1:</td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                </tr>
-                <tr>
-                  <td>Датчик 2:</td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                </tr>
-                <tr>
-                  <td>Датчик 3:</td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                </tr>
-                <tr>
-                  <td>Датчик 4:</td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                  <td><span class="status-indicator bg-success"></span></td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="dashboard-group">
-              <p>Задержка включения реле: <input type="number" class="tr100-input" /></p>
-            </div>
+          <div class="dashboard-group">
+            <p>
+              Задержка включения реле:
+              <input type="number" class="tr100-input" />
+            </p>
           </div>
         </div>
       </div>
@@ -216,7 +237,10 @@
           datasets: [
             {
               type: "scatter",
-              data: new Array(TR100_GRAPH_CAPACITY).fill({ x: undefined, y: undefined }),
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
             },
           ],
         },
