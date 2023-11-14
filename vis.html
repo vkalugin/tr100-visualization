@@ -86,10 +86,16 @@
             </table>
           </div>
           <div class="dashboard-group">
-            <p>Контроль вентиляции</p>
-            <span class="status-indicator"></span> Канал 1, 2, 3
-            <span class="status-indicator"></span> Канал 1, 2, 3, 4
-            <span class="status-indicator"></span> Канал 4
+            <form id="tr100-vent-control">
+              <p>Контроль вентиляции</p>
+              <input type="radio" id="tr100-channel-1-2-3" name="tr100-vent-control" value="channel-1-2-3">
+              <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
+              <input type="radio" id="tr100-channel-1-2-3-4" name="tr100-vent-control" value="channel-1-2-3-4">
+              <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
+              <input type="radio" id="tr100-channel-4" name="tr100-vent-control" value="channel-4">
+              <label for="tr100-channel-4">Канал 4</label>
+            </form>
+            
           </div>
         </div>
         <div class="col-sm">
