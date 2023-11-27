@@ -65,8 +65,8 @@
                     style="margin: 20px; filter: invert(1)"
                   />
                 </th>
-                <th>Температура<br>включения</th>
-                <th>Дифференциал<br>отключения</th>
+                <th>Температура<br />включения</th>
+                <th>Дифференциал<br />отключения</th>
               </tr>
               <tr>
                 <td>Расцепление:</td>
@@ -88,14 +88,28 @@
           <div class="dashboard-group">
             <form id="tr100-vent-control">
               <p>Контроль вентиляции</p>
-              <input type="radio" id="tr100-channel-1-2-3" name="tr100-vent-control" value="channel-1-2-3">
+              <input
+                type="radio"
+                id="tr100-channel-1-2-3"
+                name="tr100-vent-control"
+                value="channel-1-2-3"
+              />
               <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
-              <input type="radio" id="tr100-channel-1-2-3-4" name="tr100-vent-control" value="channel-1-2-3-4">
+              <input
+                type="radio"
+                id="tr100-channel-1-2-3-4"
+                name="tr100-vent-control"
+                value="channel-1-2-3-4"
+              />
               <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
-              <input type="radio" id="tr100-channel-4" name="tr100-vent-control" value="channel-4">
+              <input
+                type="radio"
+                id="tr100-channel-4"
+                name="tr100-vent-control"
+                value="channel-4"
+              />
               <label for="tr100-channel-4">Канал 4</label>
             </form>
-            
           </div>
         </div>
         <div class="col-sm">
@@ -116,23 +130,23 @@
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><div param-value="~tr100>348">-</div></td>
+                <td><div param-value="~tr100>302">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><div param-value="~tr100>350">-</div></td>
+                <td><div param-value="~tr100>310">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><div param-value="~tr100>352">-</div></td>
+                <td><div param-value="~tr100>318">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><div param-value="~tr100>354">-</div></td>
+                <td><div param-value="~tr100>326">-</div></td>
               </tr>
             </table>
           </div>
@@ -176,31 +190,115 @@
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                    on-param-value="~tr100>340.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                    on-param-value="~tr100>342.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                    on-param-value="~tr100>344.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                    on-param-value="~tr100>346.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
               </tr>
             </table>
           </div>
@@ -252,5 +350,9 @@
         },
       }
     );
+
+    window.onVizUpdate = function (data) {
+      const indicators = [];
+    };
   </script>
 </div>
