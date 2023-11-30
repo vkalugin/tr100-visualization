@@ -92,28 +92,28 @@
                 type="radio"
                 id="tr100-always-off"
                 name="tr100-vent-control"
-                value="always-off"
+                value="0"
               />
               <label>Всегда Выкл.</label>
               <input
                 type="radio"
                 id="tr100-channel-1-2-3"
                 name="tr100-vent-control"
-                value="channel-1-2-3"
+                value="1"
               />
               <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
               <input
                 type="radio"
                 id="tr100-channel-1-2-3-4"
                 name="tr100-vent-control"
-                value="channel-1-2-3-4"
+                value="2"
               />
               <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
               <input
                 type="radio"
                 id="tr100-channel-4"
                 name="tr100-vent-control"
-                value="channel-4"
+                value="3"
               />
               <label for="tr100-channel-4">Канал 4</label>
             </form>
@@ -361,5 +361,145 @@
     window.onVizUpdate = function (data) {
       const indicators = [];
     };
+  </script>
+
+  <script>
+    const API_TOKEN = document.querySelector(".vis-view").getAttribute("apitoken");
+    const API_BASE_URL = document.querySelector(".vis-view").getAttribute("apibaseurl");
+
+    async function postResponse(body, url) {
+      const res = await new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onload = function () {
+          const data = JSON.parse(request.response);
+          resolve(data);
+        }
+
+        request.onerror = function (err) {
+          console.error(err);
+          reject(err)
+        }
+
+        request.open("POST", url);
+        request.setRequestHeader("authorization", `token ${API_TOKEN}`);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(body));
+      });
+
+      return res;
+    }
+
+    async function getResponse(url) {
+      const res = await new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onload = function () {
+          const data = JSON.parse(request.response);
+          resolve(data);
+        }
+
+        request.onerror = function (err) {
+          console.error(err);
+          reject(err)
+        }
+
+        request.open("GET", url);
+        request.setRequestHeader("authorization", `token ${API_TOKEN}`);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send();
+      });
+
+      return res;
+    }
+
+    async function rawReadRegs(address, registersNum) {
+      const deviceInfo = await getResponse(`${API_BASE_URL}/v1/device/${DEVICE_ID}/`);
+
+      const body = {
+        deviceModbusId: deviceInfo.modbusUnitId,
+        address: address,
+        kind: "holding",
+        registersNum: registersNum,
+        connection: {
+          kind: "net-id",
+          networkId: deviceInfo.netId,
+        }
+      };
+
+      const res = await postResponse(body, `${API_BASE_URL}/v1/raw/read-register-group/`);
+      return res;
+    }
+
+    async function readShortReg(address) {
+      const regs = await rawReadRegs(address, 1);
+      if (regs.ok) {
+        return regs.ok[0];
+      } else {
+        return undefined;
+      }
+    }
+
+    async function readLongReg(address) {
+      const regs = await rawReadRegs(address, 2);
+      if (regs.ok) {
+        return ((regs.ok[0]) << 16) + regs.ok[1];
+      } else {
+        return undefined;
+      }
+    }
+
+    async function writeRegValues(address, values) {
+      const deviceInfo = await getResponse(`${API_BASE_URL}/v1/device/${DEVICE_ID}/`);
+
+      const body = {
+        deviceModbusId: deviceInfo.modbusUnitId,
+        address: address,
+        kind: "holding",
+        value: values,
+        connection: {
+          kind: "net-id",
+          networkId: deviceInfo.netId,
+        }
+      };
+
+      const res = await postResponse(body, `${API_BASE_URL}/v1/raw/write-register-group/`);
+      return res;
+    }
+  </script>
+
+  <script>
+    const ventRelayInitial = readShortReg(264);
+    switch (ventRelayInitial) {
+      case 0: 
+      {
+        document.querySelector("#tr100-vent-control").value = "0";
+      }
+      break;
+      case 1: 
+      {
+        document.querySelector("#tr100-vent-control").value = "1";
+      }
+      break;
+      case 2: 
+      {
+        document.querySelector("#tr100-vent-control").value = "2";
+      }
+      break;
+      case 3: 
+      {
+        document.querySelector("#tr100-vent-control").value = "3";
+      }
+      break;
+      default: 
+      {
+        document.querySelector("#tr100-vent-control").value = "0";
+      }
+      break;
+    }
+
+    document.querySelector("#tr100-vent-control").addEventListener("change", async function () {
+      const value = Number(document.querySelector("#tr100-vent-control").value);
+      console.log(value);
+      await writeRegValues(264, [value]);
+    });
   </script>
 </div>
