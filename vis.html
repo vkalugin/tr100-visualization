@@ -137,22 +137,38 @@
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><div param-value="~tr100>348">-</div></td>
+                <td>
+                  <div id="temperature-sensor-1" param-value="~tr100>348">
+                    -
+                  </div>
+                </td>
                 <td><div param-value="~tr100>302">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><div param-value="~tr100>350">-</div></td>
+                <td>
+                  <div id="temperature-sensor-2" param-value="~tr100>350">
+                    -
+                  </div>
+                </td>
                 <td><div param-value="~tr100>310">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><div param-value="~tr100>352">-</div></td>
+                <td>
+                  <div id="temperature-sensor-3" param-value="~tr100>352">
+                    -
+                  </div>
+                </td>
                 <td><div param-value="~tr100>318">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><div param-value="~tr100>354">-</div></td>
+                <td>
+                  <div id="temperature-sensor-4" param-value="~tr100>354">
+                    -
+                  </div>
+                </td>
                 <td><div param-value="~tr100>326">-</div></td>
               </tr>
             </table>
@@ -219,7 +235,6 @@
                   <span
                     id="sensor1failure"
                     class="status-indicator bg-success"
-
                   ></span>
                 </td>
               </tr>
@@ -318,8 +333,10 @@
     </div>
   </div>
 
+  <!-- Graph -->
   <script>
     const TR100_GRAPH_CAPACITY = 100;
+    const TR100_UPDATE_GRAPH_MS = 10000;
 
     var tr100Graph = new Chart(
       document.querySelector("#tr100-graph-temperatures "),
@@ -350,11 +367,91 @@
                 y: undefined,
               }),
             },
+            {
+              type: "scatter",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
+            {
+              type: "scatter",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
+            {
+              type: "scatter",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
           ],
         },
       }
     );
 
+    var tr100graphSequencing = new Array(4).fill().map(function () {
+      return {
+        i: 0,
+        queue: new Array(TR100_GRAPH_CAPACITY).fill({
+          temp: undefined,
+          t: undefined,
+        }),
+      };
+    });
+
+    function addToGraph(graphIndex /* 0 to 3 */, value, timestamp) {
+      tr100graphSequencing[graphIndex].queue.push({
+        v: value,
+        t: new Date().valueOf(),
+      });
+      while (
+        tr100graphSequencing[graphIndex].queue.length > RPM416_GRAPH_CAPACITY
+      ) {
+        tr100graphSequencing[graphIndex].queue.shift();
+      }
+      tr100graphSequencing[graphIndex].i %= TR100_GRAPH_CAPACITY;
+      tr100graphSequencing[graphIndex].i++;
+
+      localStorage.setItem(
+        "rpm416graphSequencing",
+        JSON.stringify(tr100graphSequencing)
+      );
+
+      const now = new Date().valueOf();
+
+      for (i = 0; i < TR100_GRAPH_CAPACITY; i++) {
+        tr100Graph.data.datasets[graphIndex].data[RPM416_GRAPH_CAPACITY - i] = {
+          x: (tr100graphSequencing[graphIndex].queue[i].t - now) / 60000.0,
+          y: tr100graphSequencing[graphIndex].queue[i].v,
+        };
+      }
+
+      rpm416Graph.update();
+    }
+
+    async function updateGraphOnVis() {
+      const temperatures = [
+        Number(document.querySelector("#temperature-sensor-1").innerHTML),
+        Number(document.querySelector("#temperature-sensor-2").innerHTML),
+        Number(document.querySelector("#temperature-sensor-3").innerHTML),
+        Number(document.querySelector("#temperature-sensor-4").innerHTML),
+      ];
+
+      addToGraph(0, temperatures[0]);
+      addToGraph(1, temperatures[1]);
+      addToGraph(2, temperatures[2]);
+      addToGraph(3, temperatures[3]);
+    }
+
+    setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS);
+  </script>
+
+  <!-- Failure indicators -->
+  <script>
     const sensor1failureIndicator = document.querySelector("#sensor1failure");
     const sensor2failureIndicator = document.querySelector("#sensor2failure");
     const sensor3failureIndicator = document.querySelector("#sensor3failure");
@@ -362,8 +459,8 @@
 
     window.onVizUpdate = function (data) {
       {
-        const failure1 = (Number(data[DEVICE_STR + ">340.0:r"]) == 1);
-        const failure2 = (Number(data[DEVICE_STR + ">340.1:r"]) == 1);
+        const failure1 = Number(data[DEVICE_STR + ">340.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">340.1:r"]) == 1;
 
         if (failure1 || failure2) {
           sensor1failureIndicator.classList.remove("bg-success");
@@ -375,8 +472,8 @@
       }
 
       {
-        const failure1 = (Number(data[DEVICE_STR + ">342.0:r"]) == 1);
-        const failure2 = (Number(data[DEVICE_STR + ">342.1:r"]) == 1);
+        const failure1 = Number(data[DEVICE_STR + ">342.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">342.1:r"]) == 1;
 
         if (failure1 || failure2) {
           sensor2failureIndicator.classList.remove("bg-success");
@@ -388,8 +485,8 @@
       }
 
       {
-        const failure1 = (Number(data[DEVICE_STR + ">344.0:r"]) == 1);
-        const failure2 = (Number(data[DEVICE_STR + ">344.1:r"]) == 1);
+        const failure1 = Number(data[DEVICE_STR + ">344.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">344.1:r"]) == 1;
 
         if (failure1 || failure2) {
           sensor3failureIndicator.classList.remove("bg-success");
@@ -401,8 +498,8 @@
       }
 
       {
-        const failure1 = (Number(data[DEVICE_STR + ">346.0:r"]) == 1);
-        const failure2 = (Number(data[DEVICE_STR + ">346.1:r"]) == 1);
+        const failure1 = Number(data[DEVICE_STR + ">346.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">346.1:r"]) == 1;
 
         if (failure1 || failure2) {
           sensor4failureIndicator.classList.remove("bg-success");
@@ -416,8 +513,12 @@
   </script>
 
   <script>
-    const API_TOKEN = document.querySelector(".vis-view").getAttribute("apitoken");
-    const API_BASE_URL = document.querySelector(".vis-view").getAttribute("apibaseurl");
+    const API_TOKEN = document
+      .querySelector(".vis-view")
+      .getAttribute("apitoken");
+    const API_BASE_URL = document
+      .querySelector(".vis-view")
+      .getAttribute("apibaseurl");
 
     async function postResponse(body, url) {
       const res = await new Promise((resolve, reject) => {
@@ -425,12 +526,12 @@
         request.onload = function () {
           const data = JSON.parse(request.response);
           resolve(data);
-        }
+        };
 
         request.onerror = function (err) {
           console.error(err);
-          reject(err)
-        }
+          reject(err);
+        };
 
         request.open("POST", url);
         request.setRequestHeader("authorization", `token ${API_TOKEN}`);
@@ -447,12 +548,12 @@
         request.onload = function () {
           const data = JSON.parse(request.response);
           resolve(data);
-        }
+        };
 
         request.onerror = function (err) {
           console.error(err);
-          reject(err)
-        }
+          reject(err);
+        };
 
         request.open("GET", url);
         request.setRequestHeader("authorization", `token ${API_TOKEN}`);
@@ -464,7 +565,9 @@
     }
 
     async function rawReadRegs(address, registersNum) {
-      const deviceInfo = await getResponse(`${API_BASE_URL}/v1/device/${DEVICE_ID}/`);
+      const deviceInfo = await getResponse(
+        `${API_BASE_URL}/v1/device/${DEVICE_ID}/`
+      );
 
       const body = {
         deviceModbusId: deviceInfo.modbusUnitId,
@@ -474,10 +577,13 @@
         connection: {
           kind: "net-id",
           networkId: deviceInfo.netId,
-        }
+        },
       };
 
-      const res = await postResponse(body, `${API_BASE_URL}/v1/raw/read-register-group/`);
+      const res = await postResponse(
+        body,
+        `${API_BASE_URL}/v1/raw/read-register-group/`
+      );
       return res;
     }
 
@@ -493,14 +599,16 @@
     async function readLongReg(address) {
       const regs = await rawReadRegs(address, 2);
       if (regs.ok) {
-        return ((regs.ok[0]) << 16) + regs.ok[1];
+        return (regs.ok[0] << 16) + regs.ok[1];
       } else {
         return undefined;
       }
     }
 
     async function writeRegValues(address, values) {
-      const deviceInfo = await getResponse(`${API_BASE_URL}/v1/device/${DEVICE_ID}/`);
+      const deviceInfo = await getResponse(
+        `${API_BASE_URL}/v1/device/${DEVICE_ID}/`
+      );
 
       const body = {
         deviceModbusId: deviceInfo.modbusUnitId,
@@ -510,10 +618,13 @@
         connection: {
           kind: "net-id",
           networkId: deviceInfo.netId,
-        }
+        },
       };
 
-      const res = await postResponse(body, `${API_BASE_URL}/v1/raw/write-register-group/`);
+      const res = await postResponse(
+        body,
+        `${API_BASE_URL}/v1/raw/write-register-group/`
+      );
       return res;
     }
   </script>
@@ -521,37 +632,41 @@
   <script>
     const ventRelayInitial = readShortReg(264);
     switch (ventRelayInitial) {
-      case 0: 
-      {
-        document.querySelector("#tr100-vent-control").value = "0";
-      }
-      break;
-      case 1: 
-      {
-        document.querySelector("#tr100-vent-control").value = "1";
-      }
-      break;
-      case 2: 
-      {
-        document.querySelector("#tr100-vent-control").value = "2";
-      }
-      break;
-      case 3: 
-      {
-        document.querySelector("#tr100-vent-control").value = "3";
-      }
-      break;
-      default: 
-      {
-        document.querySelector("#tr100-vent-control").value = "0";
-      }
-      break;
+      case 0:
+        {
+          document.querySelector("#tr100-vent-control").value = "0";
+        }
+        break;
+      case 1:
+        {
+          document.querySelector("#tr100-vent-control").value = "1";
+        }
+        break;
+      case 2:
+        {
+          document.querySelector("#tr100-vent-control").value = "2";
+        }
+        break;
+      case 3:
+        {
+          document.querySelector("#tr100-vent-control").value = "3";
+        }
+        break;
+      default:
+        {
+          document.querySelector("#tr100-vent-control").value = "0";
+        }
+        break;
     }
 
-    document.querySelector("#tr100-vent-control").addEventListener("change", async function () {
-      const value = Number(document.querySelector("#tr100-vent-control").value);
-      console.log(value);
-      await writeRegValues(264, [value]);
-    });
+    document
+      .querySelector("#tr100-vent-control")
+      .addEventListener("change", async function () {
+        const value = Number(
+          document.querySelector("#tr100-vent-control").value
+        );
+        console.log(value);
+        await writeRegValues(264, [value]);
+      });
   </script>
 </div>
