@@ -416,15 +416,11 @@
       tr100graphSequencing[graphIndex].i %= TR100_GRAPH_CAPACITY;
       tr100graphSequencing[graphIndex].i++;
 
-      localStorage.setItem(
-        "rpm416graphSequencing",
-        JSON.stringify(tr100graphSequencing)
-      );
 
       const now = new Date().valueOf();
 
       for (i = 0; i < TR100_GRAPH_CAPACITY; i++) {
-        tr100Graph.data.datasets[graphIndex].data[RPM416_GRAPH_CAPACITY - i] = {
+        tr100Graph.data.datasets[graphIndex].data[TR100_GRAPH_CAPACITY - i] = {
           x: (tr100graphSequencing[graphIndex].queue[i].t - now) / 60000.0,
           y: tr100graphSequencing[graphIndex].queue[i].v,
         };
