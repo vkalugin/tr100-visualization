@@ -437,12 +437,11 @@
         Number(document.querySelector("#temperature-sensor-4").innerHTML),
       ];
 
-      console.log(temperatures);
-
-      addToGraph(0, temperatures[0]);
-      addToGraph(1, temperatures[1]);
-      addToGraph(2, temperatures[2]);
-      addToGraph(3, temperatures[3]);
+      for (let i=0; i<=3; i++) {
+        if(!Number.isNaN(temperatures[i])) {
+          addToGraph(i, temperatures[i]);
+        }
+      }
     }
 
     setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS);
