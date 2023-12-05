@@ -327,6 +327,13 @@
               Задержка включения реле:
               <input type="number" class="tr100-input" />
             </p>
+            <button
+              id="button-save-registers"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              Сохранить
+            </button>
           </div>
         </div>
       </div>
@@ -416,7 +423,6 @@
       tr100graphSequencing[graphIndex].i %= TR100_GRAPH_CAPACITY;
       tr100graphSequencing[graphIndex].i++;
 
-
       const now = new Date().valueOf();
 
       for (i = 0; i < TR100_GRAPH_CAPACITY; i++) {
@@ -437,8 +443,8 @@
         Number(document.querySelector("#temperature-sensor-4").innerHTML),
       ];
 
-      for (let i=0; i<=3; i++) {
-        if(!Number.isNaN(temperatures[i])) {
+      for (let i = 0; i <= 3; i++) {
+        if (!Number.isNaN(temperatures[i])) {
           addToGraph(i, temperatures[i]);
         }
       }
