@@ -88,35 +88,51 @@
           <div class="dashboard-group">
             <form id="tr100-vent-control">
               <p>Контроль вентиляции</p>
-              <input
-                type="radio"
-                id="tr100-always-off"
-                name="tr100-vent-control"
-                value="0"
-              />
-              <label>Всегда Выкл.</label>
-              <input
-                type="radio"
-                id="tr100-channel-1-2-3"
-                name="tr100-vent-control"
-                value="1"
-              />
-              <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
-              <input
-                type="radio"
-                id="tr100-channel-1-2-3-4"
-                name="tr100-vent-control"
-                value="2"
-              />
-              <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
-              <input
-                type="radio"
-                id="tr100-channel-4"
-                name="tr100-vent-control"
-                value="3"
-              />
-              <label for="tr100-channel-4">Канал 4</label>
+              <div>
+                <input
+                  type="radio"
+                  id="tr100-always-off"
+                  name="tr100-vent-control"
+                  value="0"
+                />
+                <label>Всегда Выкл.</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="tr100-channel-1-2-3"
+                  name="tr100-vent-control"
+                  value="1"
+                />
+                <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="tr100-channel-1-2-3-4"
+                  name="tr100-vent-control"
+                  value="2"
+                />
+                <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="tr100-channel-4"
+                  name="tr100-vent-control"
+                  value="3"
+                />
+                <label for="tr100-channel-4">Канал 4</label>
+              </div>
             </form>
+            <button
+              id="button-save-vent-control"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              Сохранить
+            </button>
           </div>
         </div>
         <div class="col-sm">
@@ -328,7 +344,7 @@
               <input type="number" class="tr100-input" />
             </p>
             <button
-              id="button-save-registers"
+              id="button-save-delay"
               type="button"
               class="btn btn-primary btn-sm"
             >
