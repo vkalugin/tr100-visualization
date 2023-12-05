@@ -409,7 +409,7 @@
         t: new Date().valueOf(),
       });
       while (
-        tr100graphSequencing[graphIndex].queue.length > RPM416_GRAPH_CAPACITY
+        tr100graphSequencing[graphIndex].queue.length > TR100_GRAPH_CAPACITY
       ) {
         tr100graphSequencing[graphIndex].queue.shift();
       }
