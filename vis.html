@@ -217,9 +217,9 @@
                 </td>
                 <td>
                   <span
+                    id="sensor1failure"
                     class="status-indicator bg-success"
-                    on-param-value="~tr100>340.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
-                    on-param-value="~tr100>340.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+
                   ></span>
                 </td>
               </tr>
@@ -245,9 +245,8 @@
                 </td>
                 <td>
                   <span
+                    id="sensor2failure"
                     class="status-indicator bg-success"
-                    on-param-value="~tr100>342.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
-                    on-param-value="~tr100>342.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
                   ></span>
                 </td>
               </tr>
@@ -273,9 +272,8 @@
                 </td>
                 <td>
                   <span
+                    id="sensor3failure"
                     class="status-indicator bg-success"
-                    on-param-value="~tr100>344.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
-                    on-param-value="~tr100>344.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
                   ></span>
                 </td>
               </tr>
@@ -301,9 +299,8 @@
                 </td>
                 <td>
                   <span
+                    id="sensor4failure"
                     class="status-indicator bg-success"
-                    on-param-value="~tr100>346.0:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
-                    on-param-value="~tr100>346.1:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
                   ></span>
                 </td>
               </tr>
@@ -358,8 +355,63 @@
       }
     );
 
+    const sensor1failureIndicator = document.querySelector("#sensor1failure");
+    const sensor2failureIndicator = document.querySelector("#sensor2failure");
+    const sensor3failureIndicator = document.querySelector("#sensor3failure");
+    const sensor4failureIndicator = document.querySelector("#sensor4failure");
+
     window.onVizUpdate = function (data) {
-      const indicators = [];
+      {
+        const failure1 = (Number(data[DEVICE_STR + ">340.0:r"]) == 1);
+        const failure2 = (Number(data[DEVICE_STR + ">340.1:r"]) == 1);
+
+        if (failure1 || failure2) {
+          sensor1failureIndicator.classList.remove("bg-success");
+          sensor1failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor1failureIndicator.classList.add("bg-success");
+          sensor1failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = (Number(data[DEVICE_STR + ">342.0:r"]) == 1);
+        const failure2 = (Number(data[DEVICE_STR + ">342.1:r"]) == 1);
+
+        if (failure1 || failure2) {
+          sensor2failureIndicator.classList.remove("bg-success");
+          sensor2failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor2failureIndicator.classList.add("bg-success");
+          sensor2failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = (Number(data[DEVICE_STR + ">344.0:r"]) == 1);
+        const failure2 = (Number(data[DEVICE_STR + ">344.1:r"]) == 1);
+
+        if (failure1 || failure2) {
+          sensor3failureIndicator.classList.remove("bg-success");
+          sensor3failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor3failureIndicator.classList.add("bg-success");
+          sensor3failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = (Number(data[DEVICE_STR + ">346.0:r"]) == 1);
+        const failure2 = (Number(data[DEVICE_STR + ">346.1:r"]) == 1);
+
+        if (failure1 || failure2) {
+          sensor4failureIndicator.classList.remove("bg-success");
+          sensor4failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor4failureIndicator.classList.add("bg-success");
+          sensor4failureIndicator.classList.remove("bg-danger");
+        }
+      }
     };
   </script>
 
