@@ -203,7 +203,7 @@
           <header class="dashboard-header">График температуры</header>
 
           <div class="dashboard-group">
-            <canvas id="tr100-graph-temperatures"
+            <canvas id="tr100-graph-temperatures" style="background-color: white;"
               >Your browser does not support the canvas element.</canvas
             >
           </div>
@@ -362,11 +362,10 @@
     const TR100_UPDATE_GRAPH_MS = 10000;
 
     var tr100Graph = new Chart(
-      document.querySelector("#tr100-graph-temperatures "),
+      document.querySelector("#tr100-graph-temperatures"),
       {
         type: "scatter",
         options: {
-          backgroundColor: "#ffffff",
           animation: false,
           showLine: true,
           scales: {
