@@ -70,18 +70,35 @@
               </tr>
               <tr>
                 <td>Расцепление:</td>
-                <td><input id="input-tripping-temperature" type="number" class="tr100-input" min="50" max="240" value="50"/></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><input id="input-tripping-temperature" type="number" class="tr100-input" min="50" max="240" value="50" /></td>
+                <td><input id="input-tripping-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
               </tr>
               <tr>
                 <td>Тревога:</td>
-                <td><input id="input-alarm-temperature" type="number" class="tr100-input" min="50" max="240" value="50"/></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><input id="input-alarm-temperature" type="number" class="tr100-input" min="50" max="240" value="50" /></td>
+                <td><input id="input-alarm-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
               </tr>
               <tr>
                 <td>Вентиляция:</td>
-                <td><input  id="input-vent-temperature" type="number" class="tr100-input" min="30" max="240" value="50"/></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td><input  id="input-vent-temperature" type="number" class="tr100-input" min="30" max="240" value="50" /></td>
+                <td><input id="input-vent-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button
+                  id="button-save-temperatures"
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                >
+                  Сохранить
+                </button></td>
+                <td><button
+                  id="button-save-differentials"
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                >
+                  Сохранить
+                </button></td>
               </tr>
             </table>
           </div>
@@ -126,13 +143,7 @@
                 <label for="tr100-channel-4">Канал 4</label>
               </div>
             </form>
-            <button
-              id="button-save-vent-control"
-              type="button"
-              class="btn btn-primary btn-sm"
-            >
-              Сохранить
-            </button>
+            
           </div>
         </div>
         <div class="col-sm">
@@ -696,7 +707,11 @@
     document.querySelector("#input-alarm-temperature").value = String(await readShortReg(256));
     document.querySelector("#input-vent-temperature").value = String(await readShortReg(266));
 
-    document.querySelector("#button-save-vent-control").addEventListener("click", async function () {
+    document.querySelector("#input-tripping-diff").value = String(await readShortReg(262));
+    document.querySelector("#input-alarm-diff").value = String(await readShortReg(258));
+    document.querySelector("#input-vent-diff").value = String(await readShortReg(268));
+
+    document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       const tempTripping = Number(document.querySelector("#input-tripping-temperature").value);
       console.log(tempTripping);
       await writeRegValues(260, [tempTripping]);
@@ -708,10 +723,20 @@
       const tempVent = Number(document.querySelector("#input-vent-temperature").value);
       console.log(tempVent);
       await writeRegValues(266, [tempVent]);
-
-      const ventControl = Number(document.querySelector("#tr100-vent-control").value);
-      console.log(ventControl);
-      await writeRegValues(264, [ventControl]);
     });
+
+    document.querySelector("button-save-differentials").addEventListener("click", async function() {
+      const diffTripping = Number(document.querySelector("#input-tripping-temperature").value);
+      console.log(diffTripping);
+      await writeRegValues(262, [diffTripping]);
+
+      const diffAlarm = Number(document.querySelector("#input-alarm-temperature").value);
+      console.log(diffAlarm);
+      await writeRegValues(258, [tempAlarm]);
+
+      const diffVent = Number(document.querySelector("#input-vent-temperature").value);
+      console.log(diffVent);
+      await writeRegValues(268, [tempVent]);
+    }
   </script>
 </div>
