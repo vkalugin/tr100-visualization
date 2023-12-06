@@ -70,17 +70,17 @@
               </tr>
               <tr>
                 <td>Расцепление:</td>
-                <td><input id="input-tripping-temperature" type="number" class="tr100-input" min="50" max="240"/></td>
+                <td><input id="input-tripping-temperature" type="number" class="tr100-input" min="50" max="240" value="50"/></td>
                 <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Тревога:</td>
-                <td><input id="input-alarm-temperature" type="number" class="tr100-input" min="50" max="240"/></td>
+                <td><input id="input-alarm-temperature" type="number" class="tr100-input" min="50" max="240" value="50"/></td>
                 <td><input type="number" class="tr100-input" /></td>
               </tr>
               <tr>
                 <td>Вентиляция:</td>
-                <td><input  id="input-vent-temperature" type="number" class="tr100-input" min="30" max="240"/></td>
+                <td><input  id="input-vent-temperature" type="number" class="tr100-input" min="30" max="240" value="50"/></td>
                 <td><input type="number" class="tr100-input" /></td>
               </tr>
             </table>
@@ -692,6 +692,9 @@
         await writeRegValues(264, [value]);
       });
 
+    document.querySelector("#input-tripping-temperature").value = String(await readShortReg(260));
+    document.querySelector("#input-alarm-temperature").value = String(await readShortReg(256));
+    document.querySelector("#input-vent-temperature").value = String(await readShortReg(266));
 
     document.querySelector("#button-save-vent-control").addEventListener("click", async function () {
       const tempTripping = Number(document.querySelector("#input-tripping-temperature").value);
