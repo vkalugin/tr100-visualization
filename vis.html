@@ -70,35 +70,93 @@
               </tr>
               <tr>
                 <td>Расцепление:</td>
-                <td><input id="input-tripping-temperature" type="number" class="tr100-input" min="50" max="240" value="50" /></td>
-                <td><input id="input-tripping-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
+                <td>
+                  <input
+                    id="input-tripping-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="50"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-tripping-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
               </tr>
               <tr>
                 <td>Тревога:</td>
-                <td><input id="input-alarm-temperature" type="number" class="tr100-input" min="50" max="240" value="50" /></td>
-                <td><input id="input-alarm-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
+                <td>
+                  <input
+                    id="input-alarm-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="50"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-alarm-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
               </tr>
               <tr>
                 <td>Вентиляция:</td>
-                <td><input  id="input-vent-temperature" type="number" class="tr100-input" min="30" max="240" value="50" /></td>
-                <td><input id="input-vent-diff" type="number" class="tr100-input" min="1" max="200" value="1" /></td>
+                <td>
+                  <input
+                    id="input-vent-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="30"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-vent-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
               </tr>
               <tr>
                 <td></td>
-                <td><button
-                  id="button-save-temperatures"
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                >
-                  Сохранить
-                </button></td>
-                <td><button
-                  id="button-save-differentials"
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                >
-                  Сохранить
-                </button></td>
+                <td>
+                  <button
+                    id="button-save-temperatures"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                  >
+                    Сохранить
+                  </button>
+                </td>
+                <td>
+                  <button
+                    id="button-save-differentials"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                  >
+                    Сохранить
+                  </button>
+                </td>
               </tr>
             </table>
           </div>
@@ -143,7 +201,6 @@
                 <label for="tr100-channel-4">Канал 4</label>
               </div>
             </form>
-            
           </div>
         </div>
         <div class="col-sm">
@@ -214,7 +271,9 @@
           <header class="dashboard-header">График температуры</header>
 
           <div class="dashboard-group">
-            <canvas id="tr100-graph-temperatures" style="background-color: white;"
+            <canvas
+              id="tr100-graph-temperatures"
+              style="background-color: white"
               >Your browser does not support the canvas element.</canvas
             >
           </div>
@@ -737,6 +796,6 @@
       const diffVent = Number(document.querySelector("#input-vent-temperature").value);
       console.log(diffVent);
       await writeRegValues(268, [tempVent]);
-    }
+    });
   </script>
 </div>
