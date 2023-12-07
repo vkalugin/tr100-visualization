@@ -762,15 +762,15 @@
         await writeRegValues(264, [value]);
       });
 
-    document.querySelector("#input-tripping-temperature").value = readShortReg(260).then((value) => value.toString(), (error) => "50");
-    document.querySelector("#input-alarm-temperature").value = readShortReg(256).then((value) => value.toString(), (error) => "50");
-    document.querySelector("#input-vent-temperature").value = readShortReg(266).then((value) => value.toString(), (error) => "30");
+    document.querySelector("#input-tripping-temperature").value = readShortReg(260).then((value) => value !== undefined ? value.toString() : "50");
+    document.querySelector("#input-alarm-temperature").value = readShortReg(256).then((value) => value !== undefined ? value.toString() : "50");
+    document.querySelector("#input-vent-temperature").value = readShortReg(266).then((value) => value !== undefined ? value.toString() : "30");
 
-    document.querySelector("#input-tripping-diff").value = readShortReg(262).then((value) => value.toString(), (error) => "1");
-    document.querySelector("#input-alarm-diff").value = readShortReg(258).then((value) => value.toString(), (error) => "1");
-    document.querySelector("#input-vent-diff").value = readShortReg(268).then((value) => value.toString(), (error) => "1");
+    document.querySelector("#input-tripping-diff").value = readShortReg(262).then((value) => value !== undefined ? value.toString() : "1");
+    document.querySelector("#input-alarm-diff").value = readShortReg(258).then((value) => value !== undefined ? value.toString() : "1");
+    document.querySelector("#input-vent-diff").value = readShortReg(268).then((value) => value !== undefined ? value.toString() : "1");
 
-    document.querySelector("#input-delay").value = readShortReg(270).then((value) => value.toString(), (error) => "0");
+    document.querySelector("#input-delay").value = readShortReg(270).then((value) => value !== undefined ? value.toString() : "0");
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       console.log("clicked button-save-temperatures");
