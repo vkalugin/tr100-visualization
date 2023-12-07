@@ -162,44 +162,46 @@
           </div>
           <div class="dashboard-group">
             <form id="tr100-vent-control">
-              <p>Контроль вентиляции</p>
-              <div>
-                <input
-                  type="radio"
-                  id="tr100-always-off"
-                  name="tr100-vent-control"
-                  value="0"
-                />
-                <label>Всегда Выкл.</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="tr100-channel-1-2-3"
-                  name="tr100-vent-control"
-                  value="1"
-                />
-                <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="tr100-channel-1-2-3-4"
-                  name="tr100-vent-control"
-                  value="2"
-                />
-                <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
-              </div>
-
-              <div>
-                <input
-                  type="radio"
-                  id="tr100-channel-4"
-                  name="tr100-vent-control"
-                  value="3"
-                />
-                <label for="tr100-channel-4">Канал 4</label>
-              </div>
+              <fieldset>
+                <legend>Контроль вентиляции</legend>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-always-off"
+                    name="tr100-vent-control"
+                    value="0"
+                  />
+                  <label for="tr100-always-off">Всегда Выкл.</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-1-2-3"
+                    name="tr100-vent-control"
+                    value="1"
+                  />
+                  <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-1-2-3-4"
+                    name="tr100-vent-control"
+                    value="2"
+                  />
+                  <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
+                </div>
+  
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-4"
+                    name="tr100-vent-control"
+                    value="3"
+                  />
+                  <label for="tr100-channel-4">Канал 4</label>
+                </div>
+              </fieldset>
             </form>
           </div>
         </div>
@@ -781,39 +783,29 @@
     elementValueFromReg("#input-delay", 270);
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
-      console.log("clicked button-save-temperatures");
       const tempTripping = Number(document.querySelector("#input-tripping-temperature").value);
-      console.log(tempTripping);
       await writeRegValues(260, [tempTripping]);
 
       const tempAlarm = Number(document.querySelector("#input-alarm-temperature").value);
-      console.log(tempAlarm);
       await writeRegValues(256, [tempAlarm]);
 
       const tempVent = Number(document.querySelector("#input-vent-temperature").value);
-      console.log(tempVent);
       await writeRegValues(266, [tempVent]);
     });
 
     document.querySelector("#button-save-differentials").addEventListener("click", async function () {
-      console.log("clicked button-save-differentials");
       const diffTripping = Number(document.querySelector("#input-tripping-diff").value);
-      console.log(diffTripping);
       await writeRegValues(262, [diffTripping]);
 
       const diffAlarm = Number(document.querySelector("#input-alarm-diff").value);
-      console.log(diffAlarm);
       await writeRegValues(258, [diffAlarm]);
 
       const diffVent = Number(document.querySelector("#input-vent-diff").value);
-      console.log(diffVent);
       await writeRegValues(268, [diffVent]);
     });
 
     document.querySelector("#button-save-delay").addEventListener("click", async function() {
-      console.log("clicked button-save-delay");
       const delay = Number(document.querySelector("#input-delay").value);
-      console.log(delay);
       await writeRegValues(270, [delay]);
     });
   </script>
