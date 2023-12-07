@@ -725,34 +725,8 @@
   </script>
 
   <script>
-    const ventRelayInitial = readShortReg(264);
-    switch (ventRelayInitial) {
-      case 0:
-        {
-          document.querySelector("#tr100-vent-control").value = "0";
-        }
-        break;
-      case 1:
-        {
-          document.querySelector("#tr100-vent-control").value = "1";
-        }
-        break;
-      case 2:
-        {
-          document.querySelector("#tr100-vent-control").value = "2";
-        }
-        break;
-      case 3:
-        {
-          document.querySelector("#tr100-vent-control").value = "3";
-        }
-        break;
-      default:
-        {
-          document.querySelector("#tr100-vent-control").value = "0";
-        }
-        break;
-    }
+
+    document.querySelector("#tr100-vent-control").value = "0";
 
     document
       .querySelector("#tr100-vent-control")
@@ -771,6 +745,8 @@
         }
       });
     }
+
+    elementValueFromReg("#tr100-vent-control", 264);
     
     elementValueFromReg("#input-tripping-temperature", 260);
     elementValueFromReg("#input-alarm-temperature", 256);
