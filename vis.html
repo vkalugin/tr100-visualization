@@ -762,15 +762,15 @@
         await writeRegValues(264, [value]);
       });
 
-    document.querySelector("#input-tripping-temperature").value = readShortReg(260).then((value) => {return value.toString()});
-    document.querySelector("#input-alarm-temperature").value = readShortReg(256).then((value) => {return value.toString()});
-    document.querySelector("#input-vent-temperature").value = readShortReg(266).then((value) => {return value.toString()});
+    document.querySelector("#input-tripping-temperature").value = readShortReg(260).then((value) => value.toString());
+    document.querySelector("#input-alarm-temperature").value = readShortReg(256).then((value) => value.toString());
+    document.querySelector("#input-vent-temperature").value = readShortReg(266).then((value) => value.toString());
 
-    document.querySelector("#input-tripping-diff").value = readShortReg(262).then((value) => {return value.toString()});
-    document.querySelector("#input-alarm-diff").value = readShortReg(258).then((value) => {return value.toString()});
-    document.querySelector("#input-vent-diff").value = readShortReg(268).then((value) => {return value.toString()});
+    document.querySelector("#input-tripping-diff").value = readShortReg(262).then((value) => value.toString());
+    document.querySelector("#input-alarm-diff").value = readShortReg(258).then((value) => value.toString());
+    document.querySelector("#input-vent-diff").value = readShortReg(268).then((value) => value.toString());
 
-    document.querySelector("#input-delay").value = readShortReg(270).then((value) => {return value.toString()});
+    document.querySelector("#input-delay").value = readShortReg(270).then((value) => value.toString());
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       console.log("clicked button-save-temperatures");
