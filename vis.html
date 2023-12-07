@@ -733,8 +733,6 @@
         }
       });
     }
-
-    elementValueFromReg("#tr100-vent-control", 264);
     
     elementValueFromReg("#input-tripping-temperature", 260);
     elementValueFromReg("#input-alarm-temperature", 256);
@@ -746,15 +744,55 @@
 
     elementValueFromReg("#input-delay", 270);
 
-    document
-      .querySelector("#tr100-vent-control")
-      .addEventListener("change", async function () {
-        const value = Number(
-          document.querySelector("#tr100-vent-control").value
-        );
-        console.log(value);
-        await writeRegValues(264, [value]);
-      });
+    readShortReg(264).then((v) => {
+        switch (v) {
+          case 0: {
+            document.querySelector("#tr100-always-off.").checked = "checked";
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 1: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").checked = "checked";
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 2: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").checked = "checked";
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 3: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").checked = "checked";
+            break;
+          }
+        }
+      }
+    );
+
+    document.querySelector("#tr100-always-off").addEventListener("click", async function () {
+      await writeRegValues(264, [0]);
+    });
+
+    document.querySelector("#tr100-channel-1-2-3").addEventListener("click", async function () {
+      await writeRegValues(264, [1]);
+    });
+
+    document.querySelector("#tr100-channel-1-2-3-4").addEventListener("click", async function () {
+      await writeRegValues(264, [2]);
+    });
+
+    document.querySelector("#tr100-channel-4").addEventListener("click", async function () {
+      await writeRegValues(264, [3]);
+    });
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       const tempTripping = Number(document.querySelector("#input-tripping-temperature").value);
