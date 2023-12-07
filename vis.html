@@ -65,37 +65,145 @@
                     style="margin: 20px; filter: invert(1)"
                   />
                 </th>
-                <th>Температура<br>включения</th>
-                <th>Дифференциал<br>отключения</th>
+                <th>Температура<br />включения</th>
+                <th>Дифференциал<br />отключения</th>
               </tr>
               <tr>
                 <td>Расцепление:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <input
+                    id="input-tripping-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="50"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-tripping-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
               </tr>
               <tr>
                 <td>Тревога:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <input
+                    id="input-alarm-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="50"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-alarm-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
               </tr>
               <tr>
                 <td>Вентиляция:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <input
+                    id="input-vent-temperature"
+                    type="number"
+                    class="tr100-input"
+                    min="30"
+                    max="240"
+                    value="50"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="input-vent-diff"
+                    type="number"
+                    class="tr100-input"
+                    min="1"
+                    max="200"
+                    value="1"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <button
+                    id="button-save-temperatures"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                  >
+                    Сохранить
+                  </button>
+                </td>
+                <td>
+                  <button
+                    id="button-save-differentials"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                  >
+                    Сохранить
+                  </button>
+                </td>
               </tr>
             </table>
           </div>
           <div class="dashboard-group">
             <form id="tr100-vent-control">
-              <p>Контроль вентиляции</p>
-              <input type="radio" id="tr100-channel-1-2-3" name="tr100-vent-control" value="channel-1-2-3">
-              <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
-              <input type="radio" id="tr100-channel-1-2-3-4" name="tr100-vent-control" value="channel-1-2-3-4">
-              <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
-              <input type="radio" id="tr100-channel-4" name="tr100-vent-control" value="channel-4">
-              <label for="tr100-channel-4">Канал 4</label>
+              <fieldset>
+                <legend>Контроль вентиляции</legend>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-always-off"
+                    name="tr100-vent-control"
+                    value="0"
+                    checked="checked"
+                  />
+                  <label for="tr100-always-off">Всегда Выкл.</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-1-2-3"
+                    name="tr100-vent-control"
+                    value="1"
+                  />
+                  <label for="tr100-channel-1-2-3">Канал 1, 2, 3</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-1-2-3-4"
+                    name="tr100-vent-control"
+                    value="2"
+                  />
+                  <label for="tr100-channel-1-2-3-4">Канал 1, 2, 3, 4</label>
+                </div>
+  
+                <div>
+                  <input
+                    type="radio"
+                    id="tr100-channel-4"
+                    name="tr100-vent-control"
+                    value="3"
+                  />
+                  <label for="tr100-channel-4">Канал 4</label>
+                </div>
+              </fieldset>
             </form>
-            
           </div>
         </div>
         <div class="col-sm">
@@ -116,23 +224,39 @@
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <div id="temperature-sensor-1" param-value="~tr100>348:r">
+                    -
+                  </div>
+                </td>
+                <td><div param-value="~tr100>302:r">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <div id="temperature-sensor-2" param-value="~tr100>350:r">
+                    -
+                  </div>
+                </td>
+                <td><div param-value="~tr100>310:r">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <div id="temperature-sensor-3" param-value="~tr100>352:r">
+                    -
+                  </div>
+                </td>
+                <td><div param-value="~tr100>318:r">-</div></td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><input type="number" class="tr100-input" /></td>
-                <td><input type="number" class="tr100-input" /></td>
+                <td>
+                  <div id="temperature-sensor-4" param-value="~tr100>354:r">
+                    -
+                  </div>
+                </td>
+                <td><div param-value="~tr100>326:r">-</div></td>
               </tr>
             </table>
           </div>
@@ -150,7 +274,9 @@
           <header class="dashboard-header">График температуры</header>
 
           <div class="dashboard-group">
-            <canvas id="tr100-graph-temperatures"
+            <canvas
+              id="tr100-graph-temperatures"
+              style="background-color: white"
               >Your browser does not support the canvas element.</canvas
             >
           </div>
@@ -176,31 +302,111 @@
               </tr>
               <tr>
                 <td>Датчик 1:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>340.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    id="sensor1failure"
+                    class="status-indicator bg-success"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 2:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>342.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    id="sensor2failure"
+                    class="status-indicator bg-success"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 3:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>344.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    id="sensor3failure"
+                    class="status-indicator bg-success"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Датчик 4:</td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
-                <td><span class="status-indicator bg-success"></span></td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    class="status-indicator bg-success"
+                    on-param-value="~tr100>346.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    id="sensor4failure"
+                    class="status-indicator bg-success"
+                  ></span>
+                </td>
               </tr>
             </table>
           </div>
@@ -208,19 +414,28 @@
           <div class="dashboard-group">
             <p>
               Задержка включения реле:
-              <input type="number" class="tr100-input" />
+              <input type="number" class="tr100-input" id="input-delay" min="0" max="300" value="0" />
             </p>
+            <button
+              id="button-save-delay"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              Сохранить
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Graph -->
   <script>
     const TR100_GRAPH_CAPACITY = 100;
+    const TR100_UPDATE_GRAPH_MS = 10000;
 
     var tr100Graph = new Chart(
-      document.querySelector("#tr100-graph-temperatures "),
+      document.querySelector("#tr100-graph-temperatures"),
       {
         type: "scatter",
         options: {
@@ -243,6 +458,31 @@
           datasets: [
             {
               type: "scatter",
+              label: "Канал 1",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
+            {
+              type: "scatter",
+              label: "Канал 2",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
+            {
+              type: "scatter",
+              label: "Канал 3",
+              data: new Array(TR100_GRAPH_CAPACITY).fill({
+                x: undefined,
+                y: undefined,
+              }),
+            },
+            {
+              type: "scatter",
+              label: "Канал 4",
               data: new Array(TR100_GRAPH_CAPACITY).fill({
                 x: undefined,
                 y: undefined,
@@ -252,5 +492,333 @@
         },
       }
     );
+
+    var tr100graphSequencing = new Array(4).fill().map(function () {
+      return {
+        i: 0,
+        queue: new Array(TR100_GRAPH_CAPACITY).fill({
+          temp: undefined,
+          t: undefined,
+        }),
+      };
+    });
+
+    function addToGraph(graphIndex /* 0 to 3 */, value, timestamp) {
+      tr100graphSequencing[graphIndex].queue.push({
+        v: value,
+        t: new Date().valueOf(),
+      });
+      while (
+        tr100graphSequencing[graphIndex].queue.length > TR100_GRAPH_CAPACITY
+      ) {
+        tr100graphSequencing[graphIndex].queue.shift();
+      }
+      tr100graphSequencing[graphIndex].i %= TR100_GRAPH_CAPACITY;
+      tr100graphSequencing[graphIndex].i++;
+
+      const now = new Date().valueOf();
+
+      for (i = 0; i < TR100_GRAPH_CAPACITY; i++) {
+        tr100Graph.data.datasets[graphIndex].data[TR100_GRAPH_CAPACITY - i] = {
+          x: (tr100graphSequencing[graphIndex].queue[i].t - now) / 60000.0,
+          y: tr100graphSequencing[graphIndex].queue[i].v,
+        };
+      }
+
+      rpm416Graph.update();
+    }
+
+    async function updateGraphOnVis() {
+      const temperatures = [
+        Number(document.querySelector("#temperature-sensor-1").innerHTML),
+        Number(document.querySelector("#temperature-sensor-2").innerHTML),
+        Number(document.querySelector("#temperature-sensor-3").innerHTML),
+        Number(document.querySelector("#temperature-sensor-4").innerHTML),
+      ];
+
+      for (let i = 0; i <= 3; i++) {
+        if (!Number.isNaN(temperatures[i])) {
+          addToGraph(i, temperatures[i]);
+        }
+      }
+    }
+
+    setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS);
+  </script>
+
+  <!-- Failure indicators -->
+  <script>
+    const sensor1failureIndicator = document.querySelector("#sensor1failure");
+    const sensor2failureIndicator = document.querySelector("#sensor2failure");
+    const sensor3failureIndicator = document.querySelector("#sensor3failure");
+    const sensor4failureIndicator = document.querySelector("#sensor4failure");
+
+    window.onVizUpdate = function (data) {
+      {
+        const failure1 = Number(data[DEVICE_STR + ">340.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">340.1:r"]) == 1;
+
+        if (failure1 || failure2) {
+          sensor1failureIndicator.classList.remove("bg-success");
+          sensor1failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor1failureIndicator.classList.add("bg-success");
+          sensor1failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = Number(data[DEVICE_STR + ">342.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">342.1:r"]) == 1;
+
+        if (failure1 || failure2) {
+          sensor2failureIndicator.classList.remove("bg-success");
+          sensor2failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor2failureIndicator.classList.add("bg-success");
+          sensor2failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = Number(data[DEVICE_STR + ">344.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">344.1:r"]) == 1;
+
+        if (failure1 || failure2) {
+          sensor3failureIndicator.classList.remove("bg-success");
+          sensor3failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor3failureIndicator.classList.add("bg-success");
+          sensor3failureIndicator.classList.remove("bg-danger");
+        }
+      }
+
+      {
+        const failure1 = Number(data[DEVICE_STR + ">346.0:r"]) == 1;
+        const failure2 = Number(data[DEVICE_STR + ">346.1:r"]) == 1;
+
+        if (failure1 || failure2) {
+          sensor4failureIndicator.classList.remove("bg-success");
+          sensor4failureIndicator.classList.add("bg-danger");
+        } else {
+          sensor4failureIndicator.classList.add("bg-success");
+          sensor4failureIndicator.classList.remove("bg-danger");
+        }
+      }
+    };
+  </script>
+
+  <script>
+    const API_TOKEN = document
+      .querySelector(".vis-view")
+      .getAttribute("apitoken");
+    const API_BASE_URL = document
+      .querySelector(".vis-view")
+      .getAttribute("apibaseurl");
+
+    async function postResponse(body, url) {
+      const res = await new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onload = function () {
+          const data = JSON.parse(request.response);
+          resolve(data);
+        };
+
+        request.onerror = function (err) {
+          console.error(err);
+          reject(err);
+        };
+
+        request.open("POST", url);
+        request.setRequestHeader("authorization", `token ${API_TOKEN}`);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(body));
+      });
+
+      return res;
+    }
+
+    async function getResponse(url) {
+      const res = await new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onload = function () {
+          const data = JSON.parse(request.response);
+          resolve(data);
+        };
+
+        request.onerror = function (err) {
+          console.error(err);
+          reject(err);
+        };
+
+        request.open("GET", url);
+        request.setRequestHeader("authorization", `token ${API_TOKEN}`);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send();
+      });
+
+      return res;
+    }
+
+    async function rawReadRegs(address, registersNum) {
+      const deviceInfo = await getResponse(
+        `${API_BASE_URL}/v1/device/${DEVICE_ID}/`
+      );
+
+      const body = {
+        deviceModbusId: deviceInfo.modbusUnitId,
+        address: address,
+        kind: "holding",
+        registersNum: registersNum,
+        connection: {
+          kind: "net-id",
+          networkId: deviceInfo.netId,
+        },
+      };
+
+      const res = await postResponse(
+        body,
+        `${API_BASE_URL}/v1/raw/read-register-group/`
+      );
+      return res;
+    }
+
+    async function readShortReg(address) {
+      const regs = await rawReadRegs(address, 1);
+      if (regs.ok) {
+        return regs.ok[0];
+      } else {
+        return undefined;
+      }
+    }
+
+    async function readLongReg(address) {
+      const regs = await rawReadRegs(address, 2);
+      if (regs.ok) {
+        return (regs.ok[0] << 16) + regs.ok[1];
+      } else {
+        return undefined;
+      }
+    }
+
+    async function writeRegValues(address, values) {
+      const deviceInfo = await getResponse(
+        `${API_BASE_URL}/v1/device/${DEVICE_ID}/`
+      );
+
+      const body = {
+        deviceModbusId: deviceInfo.modbusUnitId,
+        address: address,
+        kind: "holding",
+        value: values,
+        connection: {
+          kind: "net-id",
+          networkId: deviceInfo.netId,
+        },
+      };
+
+      const res = await postResponse(
+        body,
+        `${API_BASE_URL}/v1/raw/write-register-group/`
+      );
+      return res;
+    }
+  </script>
+
+  <script>
+    function elementValueFromReg(selector, addr) {
+      readShortReg(addr).then((v) => {
+        if (v !== undefined) {
+          document.querySelector(selector).value =v.toString();
+        }
+      });
+    }
+    
+    elementValueFromReg("#input-tripping-temperature", 260);
+    elementValueFromReg("#input-alarm-temperature", 256);
+    elementValueFromReg("#input-vent-temperature", 266);
+
+    elementValueFromReg("#input-tripping-diff", 260);
+    elementValueFromReg("#input-alarm-diff", 258);
+    elementValueFromReg("#input-vent-diff", 268);
+
+    elementValueFromReg("#input-delay", 270);
+
+    readShortReg(264).then((v) => {
+        switch (v) {
+          case 0: {
+            document.querySelector("#tr100-always-off.").checked = "checked";
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 1: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").checked = "checked";
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 2: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").checked = "checked";
+            document.querySelector("#tr100-channel-4").removeAttribute("checked");
+            break;
+          }
+          case 3: {
+            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
+            document.querySelector("#tr100-channel-4").checked = "checked";
+            break;
+          }
+        }
+      }
+    );
+
+    document.querySelector("#tr100-always-off").addEventListener("click", async function () {
+      await writeRegValues(264, [0]);
+    });
+
+    document.querySelector("#tr100-channel-1-2-3").addEventListener("click", async function () {
+      await writeRegValues(264, [1]);
+    });
+
+    document.querySelector("#tr100-channel-1-2-3-4").addEventListener("click", async function () {
+      await writeRegValues(264, [2]);
+    });
+
+    document.querySelector("#tr100-channel-4").addEventListener("click", async function () {
+      await writeRegValues(264, [3]);
+    });
+
+    document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
+      const tempTripping = Number(document.querySelector("#input-tripping-temperature").value);
+      await writeRegValues(260, [tempTripping]);
+
+      const tempAlarm = Number(document.querySelector("#input-alarm-temperature").value);
+      await writeRegValues(256, [tempAlarm]);
+
+      const tempVent = Number(document.querySelector("#input-vent-temperature").value);
+      await writeRegValues(266, [tempVent]);
+    });
+
+    document.querySelector("#button-save-differentials").addEventListener("click", async function () {
+      const diffTripping = Number(document.querySelector("#input-tripping-diff").value);
+      await writeRegValues(262, [diffTripping]);
+
+      const diffAlarm = Number(document.querySelector("#input-alarm-diff").value);
+      await writeRegValues(258, [diffAlarm]);
+
+      const diffVent = Number(document.querySelector("#input-vent-diff").value);
+      await writeRegValues(268, [diffVent]);
+    });
+
+    document.querySelector("#button-save-delay").addEventListener("click", async function() {
+      const delay = Number(document.querySelector("#input-delay").value);
+      await writeRegValues(270, [delay]);
+    });
   </script>
 </div>
