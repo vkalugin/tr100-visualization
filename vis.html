@@ -793,11 +793,11 @@
 
       const diffAlarm = Number(document.querySelector("#input-alarm-temperature").value);
       console.log(diffAlarm);
-      await writeRegValues(258, [tempAlarm]);
+      await writeRegValues(258, [diffAlarm]);
 
       const diffVent = Number(document.querySelector("#input-vent-temperature").value);
       console.log(diffVent);
-      await writeRegValues(268, [tempVent]);
+      await writeRegValues(268, [diffVent]);
     });
 
     document.querySelector("#button-save-delay").addEventListener("click", async function() {
