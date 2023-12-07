@@ -762,15 +762,40 @@
         await writeRegValues(264, [value]);
       });
 
-    document.querySelector("#input-tripping-temperature").value = readShortReg(260).then((value) => value.toString(), (error) => "50");
-    document.querySelector("#input-alarm-temperature").value = readShortReg(256).then((value) => value.toString(), (error) => "50");
-    document.querySelector("#input-vent-temperature").value = readShortReg(266).then((value) => value.toString(), (error) => "30");
+    let regValue = await readShortReg(260);
+    if (value !== undefined) {
+      document.querySelector("#input-tripping-temperature").value = regValue.toString();
+    }
 
-    document.querySelector("#input-tripping-diff").value = readShortReg(262).then((value) => value.toString(), (error) => "1");
-    document.querySelector("#input-alarm-diff").value = readShortReg(258).then((value) => value.toString(), (error) => "1");
-    document.querySelector("#input-vent-diff").value = readShortReg(268).then((value) => value.toString(), (error) => "1");
+    regValue = await readShortReg(256);
+    if (value !== undefined) {
+      document.querySelector("#input-alarm-temperature").value = regValue.toString();
+    }
 
-    document.querySelector("#input-delay").value = readShortReg(270).then((value) => value.toString(), (error) => "0");
+    regValue = await readShortReg(266);
+    if (value !== undefined) {
+      document.querySelector("#input-vent-temperature").value = regValue.toString();
+    }
+
+    regValue = await readShortReg(262);
+    if (value !== undefined) {
+      document.querySelector("#input-tripping-diff").value = regValue.toString();
+    }
+
+    regValue = await readShortReg(258);
+    if (value !== undefined) {
+      document.querySelector("#input-alarm-diff").value = regValue.toString();
+    }
+
+    regValue = await readShortReg(268);
+    if (value !== undefined) {
+      document.querySelector("#input-vent-diff").value = regValue.toString();
+    }
+
+    regValue = await readShortReg(270);
+    if (value !== undefined) {
+      document.querySelector("#input-delay").value = regValue.toString();
+    }
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       console.log("clicked button-save-temperatures");
