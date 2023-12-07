@@ -762,15 +762,15 @@
         await writeRegValues(264, [value]);
       });
 
-    document.querySelector("#input-tripping-temperature").value = String(await readShortReg(260));
-    document.querySelector("#input-alarm-temperature").value = String(await readShortReg(256));
-    document.querySelector("#input-vent-temperature").value = String(await readShortReg(266));
+    // document.querySelector("#input-tripping-temperature").value = String(await readShortReg(260));
+    // document.querySelector("#input-alarm-temperature").value = String(await readShortReg(256));
+    // document.querySelector("#input-vent-temperature").value = String(await readShortReg(266));
 
-    document.querySelector("#input-tripping-diff").value = String(await readShortReg(262));
-    document.querySelector("#input-alarm-diff").value = String(await readShortReg(258));
-    document.querySelector("#input-vent-diff").value = String(await readShortReg(268));
+    // document.querySelector("#input-tripping-diff").value = String(await readShortReg(262));
+    // document.querySelector("#input-alarm-diff").value = String(await readShortReg(258));
+    // document.querySelector("#input-vent-diff").value = String(await readShortReg(268));
 
-    document.querySelector("#input-delay").value = String(await readShortReg(270));
+    // document.querySelector("#input-delay").value = String(await readShortReg(270));
 
     document.querySelector("#button-save-temperatures").addEventListener("click", async function () {
       console.log("clicked button-save-temperatures");
