@@ -797,15 +797,15 @@
 
     document.querySelector("#button-save-differentials").addEventListener("click", async function () {
       console.log("clicked button-save-differentials");
-      const diffTripping = Number(document.querySelector("#input-tripping-diffs").value);
+      const diffTripping = Number(document.querySelector("#input-tripping-diff").value);
       console.log(diffTripping);
       await writeRegValues(262, [diffTripping]);
 
-      const diffAlarm = Number(document.querySelector("#input-alarm-diffs").value);
+      const diffAlarm = Number(document.querySelector("#input-alarm-diff").value);
       console.log(diffAlarm);
       await writeRegValues(258, [diffAlarm]);
 
-      const diffVent = Number(document.querySelector("#input-vent-diffs").value);
+      const diffVent = Number(document.querySelector("#input-vent-diff").value);
       console.log(diffVent);
       await writeRegValues(268, [diffVent]);
     });
