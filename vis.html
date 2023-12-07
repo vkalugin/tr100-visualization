@@ -786,7 +786,7 @@
       await writeRegValues(266, [tempVent]);
     });
 
-    document.querySelector("button-save-differentials").addEventListener("click", async function () {
+    document.querySelector("#button-save-differentials").addEventListener("click", async function () {
       const diffTripping = Number(document.querySelector("#input-tripping-temperature").value);
       console.log(diffTripping);
       await writeRegValues(262, [diffTripping]);
