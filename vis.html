@@ -41,6 +41,21 @@
       -moz-transform: rotate(-90deg);
       transform: rotate(-90deg);
     }
+
+    #table-temp-diff td {
+      padding: 10px;
+    }
+
+    #table-temp-sensors td {
+      padding: 25px;
+    }
+
+    #table-alarm-states td {
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   </style>
 
   <div>
@@ -56,7 +71,7 @@
           <header class="dashboard-header">Температурные пороги</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-temp-diff">
               <tr>
                 <th>
                   <img
@@ -210,7 +225,7 @@
           <header class="dashboard-header">Температура</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-temp-sensors">
               <tr>
                 <th>
                   <img
@@ -286,7 +301,7 @@
           <header class="dashboard-header">Состояние аварий</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-alarm-states">
               <tr>
                 <th>
                   <img
