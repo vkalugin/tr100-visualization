@@ -768,31 +768,34 @@
     readShortReg(264).then((v) => {
         switch (v) {
           case 0: {
-            document.querySelector("#tr100-always-off.").checked = "checked";
+            document.querySelector("#tr100-always-off").setAttribute("checked", "checked");
             document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
             document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
             document.querySelector("#tr100-channel-4").removeAttribute("checked");
             break;
           }
           case 1: {
-            document.querySelector("#tr100-always-off.").removeAttribute("checked");
-            document.querySelector("#tr100-channel-1-2-3").checked = "checked";
+            document.querySelector("#tr100-always-off").removeAttribute("checked");
+            document.querySelector("#tr100-channel-1-2-3").setAttribute("checked", "checked");
             document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
             document.querySelector("#tr100-channel-4").removeAttribute("checked");
             break;
           }
           case 2: {
-            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-always-off").removeAttribute("checked");
             document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
-            document.querySelector("#tr100-channel-1-2-3-4").checked = "checked";
+            document.querySelector("#tr100-channel-1-2-3-4").setAttribute("checked", "checked");
             document.querySelector("#tr100-channel-4").removeAttribute("checked");
             break;
           }
           case 3: {
-            document.querySelector("#tr100-always-off.").removeAttribute("checked");
+            document.querySelector("#tr100-always-off").removeAttribute("checked");
             document.querySelector("#tr100-channel-1-2-3").removeAttribute("checked");
             document.querySelector("#tr100-channel-1-2-3-4").removeAttribute("checked");
-            document.querySelector("#tr100-channel-4").checked = "checked";
+            document.querySelector("#tr100-channel-4").setAttribute("checked", "checked");
+            break;
+          }
+          default: {
             break;
           }
         }
