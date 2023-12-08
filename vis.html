@@ -41,6 +41,28 @@
       -moz-transform: rotate(-90deg);
       transform: rotate(-90deg);
     }
+
+    #table-temp-diff td {
+      padding: 5px 20px 5px 20px;
+    }
+
+    #table-temp-diff th {
+      text-align: center;
+    }
+
+    #table-temp-sensors td {
+      padding: 15px 40px 15px 40px;
+    }
+
+    #table-temp-sensors th {
+      text-align: center;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    #table-alarm-states td {
+      padding: 5px 35px 5px 35px;
+    }
   </style>
 
   <div>
@@ -56,7 +78,7 @@
           <header class="dashboard-header">Температурные пороги</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-temp-diff">
               <tr>
                 <th>
                   <img
@@ -143,7 +165,7 @@
                   <button
                     id="button-save-temperatures"
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-light btn-sm"
                   >
                     Сохранить
                   </button>
@@ -152,7 +174,7 @@
                   <button
                     id="button-save-differentials"
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-light btn-sm"
                   >
                     Сохранить
                   </button>
@@ -163,7 +185,7 @@
           <div class="dashboard-group">
             <form id="tr100-vent-control">
               <fieldset>
-                <legend>Контроль вентиляции</legend>
+                <legend style="font-size: smaller;">Контроль вентиляции</legend>
                 <div>
                   <input
                     type="radio"
@@ -210,7 +232,7 @@
           <header class="dashboard-header">Температура</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-temp-sensors">
               <tr>
                 <th>
                   <img
@@ -219,8 +241,8 @@
                     style="margin: 20px; filter: invert(1)"
                   />
                 </th>
-                <th>Текущая</th>
-                <th>Максимальная</th>
+                <th><div>Текущая</div></th>
+                <th><div>Максимальная</div></th>
               </tr>
               <tr>
                 <td>Датчик 1:</td>
@@ -262,9 +284,8 @@
           </div>
 
           <div class="dashboard-group">
-            <p>
-              Сбросить максимальную температуру
-              <span class="status-indicator"></span>
+            <p  style="padding-top: 15px; padding-bottom: 15px;" >
+              <button class="btn btn-light btn-sm" disabled>Сбросить максимальную температуру</button>
             </p>
           </div>
         </div>
@@ -286,7 +307,7 @@
           <header class="dashboard-header">Состояние аварий</header>
 
           <div class="dashboard-group">
-            <table class="dashboard-table">
+            <table class="dashboard-table" id="table-alarm-states">
               <tr>
                 <th>
                   <img
@@ -412,14 +433,14 @@
           </div>
 
           <div class="dashboard-group">
-            <p>
+            <span>
               Задержка включения реле:
               <input type="number" class="tr100-input" id="input-delay" min="0" max="300" value="0" />
-            </p>
+            </span>
             <button
               id="button-save-delay"
               type="button"
-              class="btn btn-primary btn-sm"
+              class="btn btn-light btn-sm"
             >
               Сохранить
             </button>
