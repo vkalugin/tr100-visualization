@@ -498,6 +498,14 @@
         options: {
           animation: false,
           showLine: true,
+          elements: {
+            points: {
+              radius: 0,
+            },
+            line: {
+              borderWidth: 2,
+            }
+          },
           scales: {
             x: {
               min: -10,
@@ -599,13 +607,12 @@
 
       for (let i = 0; i <= 3; i++) {
         if (!Number.isNaN(temperatures[i])) {
-          console.log(temperatures[i]);
           addToGraph(i, temperatures[i]);
         }
       }
     }
 
-    console.log(setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS));
+    setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS);
   </script>
 
   <!-- Failure indicators -->
