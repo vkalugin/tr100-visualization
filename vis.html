@@ -783,30 +783,30 @@
   </script>
 
   <script>
-    document.querySelector("#temperature-sensor-1").setAttribute("param-value", DEVICE_STR + "&gt;348:r");
-    document.querySelector("#temperature-sensor-1-max").setAttribute("param-value", DEVICE_STR + "&gt;302:r");
-    document.querySelector("#temperature-sensor-2").setAttribute("param-value", DEVICE_STR + "&gt;350:r");
+    document.querySelector("#temperature-sensor-1").setAttribute("param-value", DEVICE_STR + ">348:r");
+    document.querySelector("#temperature-sensor-1-max").setAttribute("param-value", DEVICE_STR + ">302:r");
+    document.querySelector("#temperature-sensor-2").setAttribute("param-value", DEVICE_STR + ">350:r");
     document.querySelector("#temperature-sensor-2-max").setAttribute("param-value", DEVICE_STR + "&gt;310:r");
-    document.querySelector("#temperature-sensor-3").setAttribute("param-value", DEVICE_STR + "&gt;352:r");
-    document.querySelector("#temperature-sensor-3-max").setAttribute("param-value", DEVICE_STR + "&gt;318:r");
-    document.querySelector("#temperature-sensor-4").setAttribute("param-value", DEVICE_STR + "&gt;354:r");
-    document.querySelector("#temperature-sensor-4-max").setAttribute("param-value", DEVICE_STR + "&gt;326:r");
+    document.querySelector("#temperature-sensor-3").setAttribute("param-value", DEVICE_STR + ">352:r");
+    document.querySelector("#temperature-sensor-3-max").setAttribute("param-value", DEVICE_STR + ">318:r");
+    document.querySelector("#temperature-sensor-4").setAttribute("param-value", DEVICE_STR + ">354:r");
+    document.querySelector("#temperature-sensor-4-max").setAttribute("param-value", DEVICE_STR + ">326:r");
 
-    document.querySelector("#indicator-sensor-1-tripping").setAttribute("on-param-value", DEVICE_STR + "&gt;340.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-1-alarm").setAttribute("on-param-value", DEVICE_STR + "&gt;340.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-1-vent").setAttribute("on-param-value", DEVICE_STR + "&gt;340.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-1-tripping").setAttribute("on-param-value", DEVICE_STR + ">340.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-1-alarm").setAttribute("on-param-value", DEVICE_STR + ">340.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-1-vent").setAttribute("on-param-value", DEVICE_STR + ">340.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
 
-    document.querySelector("#indicator-sensor-2-tripping").setAttribute("on-param-value", DEVICE_STR + "&gt;342.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-2-alarm").setAttribute("on-param-value", DEVICE_STR + "&gt;342.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-2-vent").setAttribute("on-param-value", DEVICE_STR + "&gt;342.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-2-tripping").setAttribute("on-param-value", DEVICE_STR + ">342.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-2-alarm").setAttribute("on-param-value", DEVICE_STR + ">342.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-2-vent").setAttribute("on-param-value", DEVICE_STR + ">342.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
 
-    document.querySelector("#indicator-sensor-3-tripping").setAttribute("on-param-value", DEVICE_STR + "&gt;344.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-3-alarm").setAttribute("on-param-value", DEVICE_STR + "&gt;344.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-3-vent").setAttribute("on-param-value", DEVICE_STR + "&gt;344.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-3-tripping").setAttribute("on-param-value", DEVICE_STR + ">344.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-3-alarm").setAttribute("on-param-value", DEVICE_STR + ">344.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-3-vent").setAttribute("on-param-value", DEVICE_STR + ">344.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
 
-    document.querySelector("#indicator-sensor-4-tripping").setAttribute("on-param-value", DEVICE_STR + "&gt;346.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-4-alarm").setAttribute("on-param-value", DEVICE_STR + "&gt;346.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
-    document.querySelector("#indicator-sensor-4-vent").setAttribute("on-param-value", DEVICE_STR + "&gt;346.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-4-tripping").setAttribute("on-param-value", DEVICE_STR + ">346.2:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-4-alarm").setAttribute("on-param-value", DEVICE_STR + ">346.3:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
+    document.querySelector("#indicator-sensor-4-vent").setAttribute("on-param-value", DEVICE_STR + ">346.4:=1:class:status-indicator bg-danger:status-indicator bg-success:r");
 
     function elementValueFromReg(selector, addr) {
       readShortReg(addr).then((v) => {
