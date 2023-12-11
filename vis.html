@@ -599,12 +599,13 @@
 
       for (let i = 0; i <= 3; i++) {
         if (!Number.isNaN(temperatures[i])) {
+          console.log(temperatures[i]);
           addToGraph(i, temperatures[i]);
         }
       }
     }
 
-    setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS);
+    console.log(setInterval(updateGraphOnVis, TR100_UPDATE_GRAPH_MS));
   </script>
 
   <!-- Failure indicators -->
