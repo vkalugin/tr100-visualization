@@ -498,14 +498,7 @@
         options: {
           animation: false,
           showLine: true,
-          elements: {
-            points: {
-              radius: 0,
-            },
-            line: {
-              borderWidth: 2,
-            }
-          },
+        
           scales: {
             x: {
               min: -10,
@@ -561,6 +554,9 @@
         },
       }
     );
+
+    tr100Graph.options.elements.point.radius = 0;
+    tr100Graph.options.elements.line.borderWidth = 2;
 
     var tr100graphSequencing = new Array(4).fill().map(function () {
       return {
